@@ -22,7 +22,7 @@ dependencies = ["lightgbm>=4.5.0, <5",
                 "loguru>=0.6.0, <1",                           # Added loguru
                 "pre-commit>=2.20.0, <3",                      # Added pre-commit
                 "pydantic==2.9.0, <3",                         # Added pydantic (v 0.0.8)
-                "databricks-sdk==0.32.0",                      # Fixed version(v 0.0.10)
+                "databricks-sdk==0.38.0",                      # Fixed version(v 0.0.10)
                 ]
 
 [project.optional-dependencies]

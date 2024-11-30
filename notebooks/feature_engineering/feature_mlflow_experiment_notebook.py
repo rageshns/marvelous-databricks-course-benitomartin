@@ -19,12 +19,12 @@ from sklearn.compose import ColumnTransformer
 from sklearn.metrics import roc_auc_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import RobustScaler
-
+from databricks.connect import DatabricksSession
 from credit_default.utils import load_config
 
 # COMMAND ----------
 
-config = load_config("../../project_config.yml")
+config = load_config("project_config.yml")
 parameters = config.parameters
 print(config)
 
@@ -32,6 +32,7 @@ print(config)
 
 # Initialize Spark and feature engineering client
 spark = SparkSession.builder.getOrCreate()
+# spark = DatabricksSession.builder.getOrCreate()
 fe = feature_engineering.FeatureEngineeringClient()
 
 

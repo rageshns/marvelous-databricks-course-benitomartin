@@ -75,7 +75,7 @@ try:
 
     # Define the serving endpoint
     logger.info("Fetching model serving endpoint...")
-    serving_endpoint_name = "credit-default-model-serving-feature"
+    serving_endpoint_name = "credit-default-model-serving-feature1"
     serving_endpoint = workspace.serving_endpoints.get(serving_endpoint_name)
     model_name = serving_endpoint.config.served_models[0].model_name
     model_version = serving_endpoint.config.served_models[0].model_version

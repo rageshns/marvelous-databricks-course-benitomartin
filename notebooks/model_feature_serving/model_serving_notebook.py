@@ -1,4 +1,13 @@
 # Databricks notebook source
+# MAGIC %pip install credit_default_databricks-0.0.11-py3-none-any.whl
+# MAGIC
+
+# COMMAND ----------
+
+dbutils.library.restartPython()
+
+
+# COMMAND ----------
 import random
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -96,9 +105,9 @@ train_set = spark.table(f"{catalog_name}.{schema_name}.train_set").toPandas()
 ## Call the endpoint
 # Call The Endpoint
 
-# token = dbutils.notebook.entry_point.getDbutils().notebook().getContext().apiToken().get()  # noqa: F821
+token = dbutils.notebook.entry_point.getDbutils().notebook().getContext().apiToken().get()  # noqa: F821
 
-token = dbutils.secrets.get(scope="secret-scope", key="databricks-token")  # noqa: F821
+# token = dbutils.secrets.get(scope="secret-scope", key="databricks-token")  # noqa: F821
 
 host = spark.conf.get("spark.databricks.workspaceUrl")
 

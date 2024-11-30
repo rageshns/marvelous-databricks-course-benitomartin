@@ -16,14 +16,14 @@ from sklearn.preprocessing import RobustScaler
 
 from credit_default.utils import load_config
 
-# spark = SparkSession.builder.getOrCreate()
-spark = DatabricksSession.builder.getOrCreate()
+spark = SparkSession.builder.getOrCreate()
+# spark = DatabricksSession.builder.getOrCreate()
 
 # Load environment variables
-load_dotenv()
+# load_dotenv()
 
-CONFIG_DATABRICKS = os.environ["CONFIG_DATABRICKS"]
-print(CONFIG_DATABRICKS)
+# CONFIG_DATABRICKS = os.environ["CONFIG_DATABRICKS"]
+# print(CONFIG_DATABRICKS)
 
 
 # COMMAND ----------
@@ -35,7 +35,8 @@ mlflow.set_registry_uri("databricks-uc")
 # COMMAND ----------
 
 # Load configuration from YAML file
-config = load_config(CONFIG_DATABRICKS)
+# config = load_config(CONFIG_DATABRICKS)
+config = load_config("project_config.yml")
 catalog_name = config.catalog_name
 schema_name = config.schema_name
 parameters = config.parameters

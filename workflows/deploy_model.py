@@ -61,7 +61,7 @@ try:
     logger.debug(f"Catalog: {catalog_name}, Schema: {schema_name}")
 
     # Update serving endpoint configuration
-    endpoint_name = "credit-default-model-serving-feature"
+    endpoint_name = "credit-default-model-serving-feature1"
     logger.info(f"Updating serving endpoint: {endpoint_name}")
     workspace.serving_endpoints.update_config_and_wait(
         name=endpoint_name,

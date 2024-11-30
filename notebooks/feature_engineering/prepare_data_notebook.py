@@ -26,8 +26,8 @@ print(config.schema_name)
 
 # COMMAND ----------
 
-# FILEPATH_DATABRICKS = os.environ["FILEPATH_DATABRICKS"]
-FILEPATH_DATABRICKS = f"dbfs:/Volumes/{config.catalog_name}/{config.schema_name}/data/data.csv"
+FILEPATH_DATABRICKS = os.environ["FILEPATH_DATABRICKS"]
+# FILEPATH_DATABRICKS = f"dbfs:/Volumes/{config.catalog_name}/{config.schema_name}/data/data.csv"
 PREPROCESSING_LOGS = os.environ["PREPROCESSING_LOGS"]
 # CONFIG = os.environ["CONFIG"]
 CONFIG_DATABRICKS = os.environ["CONFIG_DATABRICKS"]

@@ -5,22 +5,22 @@ import os
 import mlflow
 import pandas as pd
 
-# from pyspark.sql import SparkSession
-from databricks.connect import DatabricksSession
-from dotenv import load_dotenv
+from pyspark.sql import SparkSession
+# from databricks.connect import DatabricksSession
+# from dotenv import load_dotenv
 from mlflow import MlflowClient
 from mlflow.models import infer_signature
 
 from credit_default.utils import load_config
 
-# spark = SparkSession.builder.getOrCreate()
-spark = DatabricksSession.builder.getOrCreate()
+spark = SparkSession.builder.getOrCreate()
+# spark = DatabricksSession.builder.getOrCreate()
 
 # Load environment variables
-load_dotenv()
+# load_dotenv()
 
-CONFIG_DATABRICKS = os.environ["CONFIG_DATABRICKS"]
-print(CONFIG_DATABRICKS)
+# CONFIG_DATABRICKS = os.environ["CONFIG_DATABRICKS"]
+# print(CONFIG_DATABRICKS)
 
 # COMMAND ----------
 
@@ -32,7 +32,8 @@ client = MlflowClient()
 # COMMAND ----------
 
 # Load configuration from YAML file
-config = load_config(CONFIG_DATABRICKS)
+# config = load_config(CONFIG_DATABRICKS)
+config = load_config("project_config.yml")
 catalog_name = config.catalog_name
 schema_name = config.schema_name
 parameters = config.parameters
@@ -119,9 +120,25 @@ with mlflow.start_run(tags={"branch": "serving"}) as run:
     mlflow.pyfunc.log_model(
         python_model=wrapped_model,
         artifact_path="pyfunc_credit_default_model",
-        code_paths=["wheel/credit_default_databricks-0.0.9-py3-none-any.whl"],
+        code_paths=["credit_default_databricks-0.0.11-py3-none-any.whl"],
         signature=signature,
     )
+
+
+    # mlflow.log_input(dataset, context="training")
+    # conda_env = _mlflow_conda_env(
+    #     additional_conda_deps=None,
+    #     additional_pip_deps=["code/mlops_with_databricks-0.0.1-py3-none-any.whl"],
+    #     additional_conda_channels=None,
+    # )
+    # mlflow.pyfunc.log_model(
+    #     python_model=wrapped_model,
+    #     conda_env=conda_env,
+    #     artifact_path="pyfunc-house-price-model",
+    #     # infer_code_paths=True,
+    #     code_paths=["mlops_with_databricks-0.0.1-py3-none-any.whl"],
+    #     signature=signature,
+    # )
 
 # COMMAND ----------
 
@@ -144,7 +161,7 @@ with open("model_version.json", "w") as json_file:
 # COMMAND ----------
 
 model_version_alias = "the_best_model"
-client.set_registered_model_alias(model_name, model_version_alias, "2")
+client.set_registered_model_alias(model_name, model_version_alias, "1")
 
 model_uri = f"models:/{model_name}@{model_version_alias}"
 model = mlflow.pyfunc.load_model(model_uri)

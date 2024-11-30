@@ -19,8 +19,8 @@ In our examples, we use UV. Check out the documentation on how to install it: ht
 To create a new environment and create a lockfile, run:
 
 ```
-uv venv -p 3.11.0 .venv
-source .venv/bin/activate
+uv venv -p 3.11.9 .venv
+.venv\Scripts\activate
 uv pip install -r pyproject.toml --all-extras
 uv lock
 ```
@@ -51,14 +51,23 @@ export DATABRICKS_CONFIG_PROFILE=DEFAULT
 
 ```
 # Create
-databricks volumes create maven default data MANAGED
+
+databricks volumes create mlops_students rageshns data MANAGED
 
 # Push
-databricks fs cp data/data.csv dbfs:/Volumes/maven/default/data/data.csv
+
+databricks fs cp data/data.csv dbfs:/Volumes/mlops_students/rageshns/data/data.csv
 
 # Show files
-databricks fs ls dbfs:/Volumes/maven/default/data
+databricks fs ls dbfs:/Volumes/mlops_students/rageshns/data
 ```
+
+
+delete functions:-
+databricks functions delete mlops_students.rageshns.calculate_house_age
+databricks functions delete mlops_students.rageshns.return_predictions
+
+
 
 ### Package Creation
 
@@ -67,13 +76,13 @@ databricks fs ls dbfs:/Volumes/maven/default/data
 uv build
 
 # Create
-databricks volumes create maven default packages MANAGED
+databricks volumes create mlops_students rageshns packages MANAGED
 
 # Push
-databricks fs cp dist/mlops_with_databricks-0.0.1-py3-none-any.whl dbfs:/Volumes/maven/default/packages
+databricks fs cp dist/credit_default_databricks-0.0.11-py3-none-any.whl dbfs:/Volumes/mlops_students/rageshns/packages
 
 # Overwrite Package
-databricks fs cp dist/credit_default_databricks-0.0.7-py3-none-any.whl dbfs:/Volumes/maven/default/packages --overwrite
+databricks fs cp dist/credit_default_databricks-0.0.11-py3-none-any.whl dbfs:/Volumes/mlops_students/rageshns/packages --overwrite
 ```
 
 ### Token Creation
