@@ -1,4 +1,6 @@
 # Databricks notebook source
+# MAGIC %pip install credit_default_databricks-0.0.11-py3-none-any.whl
+# MAGIC
 import datetime
 import itertools
 import time
@@ -29,9 +31,9 @@ test_set = spark.table(f"{catalog_name}.{schema_name}.test_set").toPandas()
 
 # COMMAND ----------
 
-# token = dbutils.notebook.entry_point.getDbutils().notebook().getContext().apiToken().get()
+token = dbutils.notebook.entry_point.getDbutils().notebook().getContext().apiToken().get()
 
-token = dbutils.secrets.get(scope="secret-scope", key="databricks-token")  # noqa: F821
+# token = dbutils.secrets.get(scope="secret-scope", key="databricks-token")  # noqa: F821
 
 host = spark.conf.get("spark.databricks.workspaceUrl")
 
@@ -50,7 +52,7 @@ test_set_records = test_set[columns].to_dict(orient="records")
 
 
 def send_request_https(dataframe_record):
-    model_serving_endpoint = f"https://{host}/serving-endpoints/credit-default-model-serving-feature/invocations"
+    model_serving_endpoint = f"https://{host}/serving-endpoints/credit-default-model-serving-feature1/invocations"
     response = requests.post(
         model_serving_endpoint,
         headers={"Authorization": f"Bearer {token}"},

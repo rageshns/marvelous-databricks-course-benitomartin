@@ -1,4 +1,10 @@
 # Databricks notebook source
+# MAGIC %pip install credit_default_databricks-0.0.11-py3-none-any.whl
+# MAGIC
+# MAGIC # Generate synthetic datasets for inference
+
+# COMMAND ----------
+
 from databricks.sdk import WorkspaceClient
 from databricks.sdk.service.catalog import (
     MonitorInferenceLog,

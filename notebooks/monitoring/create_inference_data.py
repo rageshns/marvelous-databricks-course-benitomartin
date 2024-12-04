@@ -1,5 +1,6 @@
 # Databricks notebook source
-# MAGIC %md
+# MAGIC %pip install credit_default_databricks-0.0.11-py3-none-any.whl
+# MAGIC
 # MAGIC # Generate synthetic datasets for inference
 
 # COMMAND ----------

@@ -46,7 +46,7 @@ try:
 
     # Load inference table
     logger.info("Loading inference table...")
-    inf_table = spark.sql(f"SELECT * FROM {catalog_name}.{schema_name}.`model-serving-feature_payload`")
+    inf_table = spark.sql(f"SELECT * FROM {catalog_name}.{schema_name}.`model-serving-feature_payload_payload`")
     logger.success("Inference table loaded successfully.")
 
     ## Dataframe records on payload table under response column

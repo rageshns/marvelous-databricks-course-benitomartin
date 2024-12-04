@@ -23,7 +23,7 @@ resources:
       tasks:
         - task_key: "refresh_monitor_table"
           # job_cluster_key: "credit-default-cluster"
-          existing_cluster_id: 1109-205408-dob4qyuc
+          existing_cluster_id: 1019-154602-5rcc6z0c
           spark_python_task:
             python_file: "workflows/refresh_monitor.py"
             parameters:
